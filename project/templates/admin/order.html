@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'admin/base.html' %}
 
- 	<head>
- 		<!-- Meta Tags -->
-		<meta charset="UTF-8">
-		<meta name="author" content="Kamran Mubarik">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Title -->
- 		<title>Create an E-Commerce Website using HTML, CSS and JS</title>
- 		<!-- Style Sheet -->
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
- 	</head>
-<body>
+{% block body %}
 
 	<header>
 		<div class="container">
 			<div class="brand">
 				<div class="logo">
-					<a href="index.html">
-						<img src="../img/icons/online_shopping.png">
+					<a href="/admin">
+						<img src="{{ url_for('static', filename='img/icons/online_shopping.png') }}">
 						<div class="logo-text">
 							<p class="big-logo">Ecommerce</p>
 							<p class="small-logo">online shop</p>
@@ -27,7 +16,7 @@
 				</div> <!-- logo -->
 				<div class="shop-icon">
 					<div class="dropdown">
-						<img src="../img/icons/account.png">
+						<img src="{{ url_for('static', filename='img/icons/account.png') }}">
 						<div class="dropdown-menu">
 							<ul>
 								<li><a href="#">My Account</a></li>								
@@ -47,12 +36,12 @@
 			<div class="sidebar">
 				<h3>Menu</h3>
 				<ul>
-					<li><a class="active" href="index.html">Home</a></li>
-					<li><a href="order.html">Order</a></li>
-					<li><a href="product.html">Product</a></li>
-					<li><a href="category.html">Category</a></li>
-					<li><a href="stock.html">Stock</a></li>
-					<li><a href="">Users</a></li>
+					<li><a class="active" href="/admin">Home</a></li>
+					<li><a href="/order">Order</a></li>
+					<li><a href="/product">Product</a></li>
+					<li><a href="/category">Category</a></li>
+					<li><a href="/stock">Stock</a></li>
+					<li><a href="/users">Users</a></li>
 				</ul>
 			</div>
 			<div class="content">
@@ -99,7 +88,4 @@
 			</div> <!-- Footer Bar -->
 		</div>
 	</footer> <!-- Footer Area -->
-
-</body>
-
-</html>
+{% endblock %}

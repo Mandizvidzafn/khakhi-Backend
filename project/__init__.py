@@ -8,7 +8,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 
-def craete_app():
+def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = "hsjaggi dah dgaha"
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_NAME}"
@@ -17,9 +17,13 @@ def craete_app():
 
     from project.views.views import view
     from project.auth.customer import customer
+    from project.auth.admin import admin
+    from project.products.product import products
 
     app.register_blueprint(view, url_prefix="/")
     app.register_blueprint(customer)
+    app.register_blueprint(admin)
+    app.register_blueprint(products)
 
     create_database(app)
 
