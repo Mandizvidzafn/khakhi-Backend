@@ -1,13 +1,12 @@
-{% extends 'admin/base.html' %}
-
+{% extends "admin/layout.html" %}
 {% block body %}
 
 	<header>
 		<div class="container">
 			<div class="brand">
 				<div class="logo">
-					<a href="/admin">
-						<img src="{{ url_for('static', filename='img/icons/online_shopping.png') }}">
+					<a href="index.html">
+						<img src="{{url_for('static', filename='img/icons/online_shopping.png')}}">
 						<div class="logo-text">
 							<p class="big-logo">Ecommerce</p>
 							<p class="small-logo">online shop</p>
@@ -17,7 +16,6 @@
 				<div class="shop-icon">
 					<div class="dropdown">
 						<img src="{{ url_for('static', filename='img/icons/account.png') }}">
-
 						<div class="dropdown-menu">
 							<ul>
 								<li><a href="#">My Account</a></li>								
@@ -38,29 +36,44 @@
 				<h3>Menu</h3>
 				<ul>
 					<li><a href="/admin">Home</a></li>
-					<li><a href="/product">Product</a></li>
-					<li><a class="active" href="/category">Category</a></li>
-					<li><a href="/stock">Stock</a></li>
-					<li><a href="/users">Users</a></li>
+					<li><a href="/admin/order">Order</a></li>
+					<li><a href="{{url_for('admin_routes.products')}}">Product</a></li>
+					<li><a class="active" href="/admin/category">Category</a></li>
+					<li><a href="/admin/stock">Stock</a></li>
+					<li><a href="">Users</a></li>
 				</ul>				
 			</div>
 			<div class="content">
-				<h3>Catogory</h3>
+				<h3>Category</h3>
 				<div class="content-data">
 					<div class="content-form">
-						<form>
+						<form action="#" method="post">
+							<h4>Add Category Type</h4>
+							<div class="form-inline">
+								<div class="form-group">
+									<label>Category Type</label>
+									<input type="text" name="add_cat_type">
+								</div>
+							</div>
+							<div class="form-group">
+								<label></label>
+								<input type="submit" class="add_cat_type" name="addCategorytype" value="Add Category Type">
+							</div>
+						</form>
+						<form action="#" method="post">
 							<h4>Add Category</h4>
 							<div class="form-inline">
 								<div class="form-group">
 									<label>Category Name</label>
 									<input type="text" name="cat_name">
 								</div>
-								<div class="form-group">
+								<div class="form-group bottom">
 									<label>Category Type</label>
-									<select name="cat_type">
-										<option>---Select a Type---</option>
-										<option value="men">Men</option>
-										<option value="women">Women</option>
+									<select required name="cat_type">
+										<option selected disabled>---Select a Type---</option>
+										{% for cat_type in category_type %}
+										<option name="cat_type" value="{{cat_type.name}}">{{cat_type.name}}</option>
+										{% endfor %}
 									</select>
 								</div>
 							</div>										
@@ -82,12 +95,14 @@
 								</tr>
 							</thead>
 							<tbody>
+								{% for category in categories %}
 								<tr>
-									<td>Jeans</td>
-									<td>Men</td>
+									<td>{{category.name}}</td>
+									<td>{{category.cat_type}}</td>
 									<td>Edit</td>
 									<td>Delete</td>
 								</tr>
+								{% endfor %}
 							</tbody>
 						</table>
 					</div>

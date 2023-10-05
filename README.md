@@ -9,9 +9,9 @@
 </thead>
 <tbody>
 <tr>
-<td>HTML, CSS, Javascript/JQuery, Python</td>
-<td>Responsive | Multi Page Template</td>
-<td>Flask</td>
+<td>HTML, CSS, Javascript/JQuery</td>
+<td>Non-Responsive | Multi Page Template</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>

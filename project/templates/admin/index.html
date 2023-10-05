@@ -1,13 +1,12 @@
-{% extends 'admin/base.html' %}
-
+{% extends "admin/layout.html" %}
 {% block body %}
 
 	<header>
 		<div class="container">
 			<div class="brand">
 				<div class="logo">
-					<a href="/">
-						<img src="{{ url_for('static', filename='img/icons/online_shopping.png') }}">
+					<a href="index.html">
+						<img src="{{url_for('static', filename='img/icons/online_shopping.png')}}">
 						<div class="logo-text">
 							<p class="big-logo">Ecommerce</p>
 							<p class="small-logo">online shop</p>
@@ -29,94 +28,98 @@
 			</div> <!-- brand -->
 		</div> <!-- container -->
 	</header> <!-- header -->
-
 	<main>
-		
-		<div class="main-content">
-			<div class="sidebar">
-				<h3>Menu</h3>
-				<ul>
-					<li><a class="active" href="/index">Home</a></li>
-					<li><a href="/order">Order</a></li>
-					<li><a href="/product">Product</a></li>
-					<li><a href="/category">Category</a></li>
-					<li><a href="/stock">Stock</a></li>
-					<li><a href="/users">Users</a></li>
-				</ul>				
-			</div>
-			<div class="content dashboard">
-				<h3>Dashboard</h3>
-				<div class="content-data">
-					<div class="content-detail">
-						<h4>Low Stock Report</h4>
-						<table>
-							<thead>
-								<tr>
-									<th>Product</th>
-									<th>Price</th>
-									<th>Category</th>
-									<th>Qty</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Blue Jeans</td>
-									<td>1500</td>
-									<td>Pants</td>
-									<td>2</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="content-detail">
-						<h4>Recent Order</h4>
-						<table>
-							<thead>
-								<tr>
-									<th>Date</th>
-									<th>Order Ref#</th>
-									<th>User</th>
-									<th>Amount</th>
-									<th>View</th>									
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>11-05-2020</td>
-									<td>15895452</td>
-									<td>Kamran</td>
-									<td>1500</td>
-									<td>View</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="content-detail">
-						<h4>Completed Order</h4>
-						<table>
-							<thead>
-								<tr>
-									<th>Date</th>
-									<th>Order Ref#</th>
-									<th>User</th>
-									<th>Amount</th>
-									<th>View</th>									
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>11-05-2020</td>
-									<td>15895452</td>
-									<td>Kamran</td>
-									<td>1500</td>
-									<td>View</td>
-								</tr>
-							</tbody>
-						</table>
+            <div class="main-content">
+            	<div class="sidebar">
+            	    <h3>Menu</h3>
+            	    <ul>
+            	        <li><a class="active" href="/admin">Home</a></li>
+            	        <li><a href="/admin/order">Order</a></li>
+            	        <li><a href="/admin/products">Product</a></li>
+            	        <li><a href="/admin/category">Category</a></li>
+            	        <li><a href="/admin/stock">Stock</a></li>
+            	        <li><a href="">Users</a></li>
+            	    </ul>				
+            	</div>
+            	<div class="content dashboard">
+					<h3>Dashboard</h3>
+					<div class="content-data">
+						<div class="content-detail">
+							<h4>Low Stock Report</h4>
+							<table>
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th>Price</th>
+										<th>Category</th>
+										<th>Qty</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for product in products %}
+										{% if product.quantity <= 5 %}
+											<tr>
+												<td>{{product.name}}</td>
+												<td>{{product.price}}</td>
+												{% for category in product.categories %}
+												<td>{{category.name}}</td>
+												{% endfor %}
+												<td>{{product.quantity}}</td>
+											</tr>
+										{% endif %}
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						<div class="content-detail">
+							<h4>Recent Order</h4>
+							<table>
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>Order Ref#</th>
+										<th>User</th>
+										<th>Amount</th>
+										<th>View</th>									
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>11-05-2020</td>
+										<td>15895452</td>
+										<td>Kamran</td>
+										<td>1500</td>
+										<td>View</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="content-detail">
+							<h4>Completed Order</h4>
+							<table>
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>Order Ref#</th>
+										<th>User</th>
+										<th>Amount</th>
+										<th>View</th>									
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>11-05-2020</td>
+										<td>15895452</td>
+										<td>Kamran</td>
+										<td>1500</td>
+										<td>View</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>		
+        </main>
 
-	</main> <!-- Main Area -->
-{% endblock %}
+{% endblock body %}

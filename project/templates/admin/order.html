@@ -1,13 +1,11 @@
-{% extends 'admin/base.html' %}
-
+{% extends "admin/layout.html" %}
 {% block body %}
-
 	<header>
 		<div class="container">
 			<div class="brand">
 				<div class="logo">
-					<a href="/admin">
-						<img src="{{ url_for('static', filename='img/icons/online_shopping.png') }}">
+					<a href="index.html">
+						<img src="{{url_for('static', filename='img/icons/online_shopping.png')}}">
 						<div class="logo-text">
 							<p class="big-logo">Ecommerce</p>
 							<p class="small-logo">online shop</p>
@@ -36,13 +34,13 @@
 			<div class="sidebar">
 				<h3>Menu</h3>
 				<ul>
-					<li><a class="active" href="/admin">Home</a></li>
-					<li><a href="/order">Order</a></li>
-					<li><a href="/product">Product</a></li>
-					<li><a href="/category">Category</a></li>
-					<li><a href="/stock">Stock</a></li>
-					<li><a href="/users">Users</a></li>
-				</ul>
+					<li><a href="/admin">Home</a></li>
+					<li><a class="active" href="/admin/order">Order</a></li>
+					<li><a href="{{url_for('admin_routes.products')}}">product</a></li>
+					<li><a href="/admin/category">Category</a></li>
+					<li><a href="/admin/stock">Stock</a></li>
+					<li><a href="">Users</a></li>
+				</ul>				
 			</div>
 			<div class="content">
 				<h3>Order</h3>
@@ -78,14 +76,4 @@
 		</div>		
 
 	</main> <!-- Main Area -->
-
-	<footer>
-		<div class="container">
-			<div class="footer-bar">
-				<div class="copyright-text">
-					<p>Copryright 2020 - All Rights Reserved</p>
-				</div>
-			</div> <!-- Footer Bar -->
-		</div>
-	</footer> <!-- Footer Area -->
 {% endblock %}

@@ -1,0 +1,47 @@
+{% extends "admin/layout.html" %}
+{% block body %}
+    <h1>Add Product</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="pname">Name:</label>
+            <input type="text" class="form-control" name="pname" id="pname" required>
+        </div>
+        <div class="form-group">
+            <label for="sku">SKU:</label>
+            <input type="text" class="form-control" name="sku" id="sku">
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" name="price" id="price" required>
+        </div>
+        <div class="form-group">
+            <label for="sdesc">Short Description:</label>
+            <textarea class="form-control" name="sdesc" id="sdesc" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="ldesc">Long Description:</label>
+            <textarea class="form-control" name="ldesc" id="ldesc" rows="6"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" name="quantity" id="quantity" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select class="form-control" name="category" id="category" required>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="category_types">Category Types:</label>
+            <select class="form-control" name="category_types" id="category_types" required>
+                {% for category_type in categories_types %}
+                    <option value="{{ category_type.id }}">{{ category_type.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+{% endblock %}

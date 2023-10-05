@@ -1,0 +1,74 @@
+{% extends "admin/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/view_product.css.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/view_product.css')}}">
+{% endblock css %}
+{% block body %}
+	<header>
+		<div class="container">
+			<div class="brand">
+				<div class="logo">
+					<a href="index.html">
+						<img src="{{url_for('static', filename='img/icons/online_shopping.png')}}">
+						<div class="logo-text">
+							<p class="big-logo">Ecommerce</p>
+							<p class="small-logo">online shop</p>
+						</div>
+					</a>
+				</div> <!-- logo -->
+				<div class="shop-icon">
+					<div class="dropdown">
+						<img src="{{ url_for('static', filename='img/icons/account.png') }}">
+						<div class="dropdown-menu">
+							<ul>
+								<li><a href="#">My Account</a></li>								
+								<li><a href="#">Settings</a></li>
+								<li><a href="#">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div> <!-- shop icons -->
+			</div> <!-- brand -->
+		</div> <!-- container -->
+	</header> <!-- header -->
+
+	<main>
+		
+		<div class="main-content">
+			<div class="sidebar">
+				<h3>Menu</h3>
+				<ul>
+					<li><a href="/admin">Home</a></li>
+					<li><a href="/admin/order">Order</a></li>
+					<li><a class="active" href="{{url_for('admin_routes.products')}}">Product</a></li>
+					<li><a href="/admin/category">Category</a></li>
+					<li><a href="/admin/stock">Stock</a></li>
+					<li><a href="">Users</a></li>
+				</ul>				
+			</div>
+			<div class="content">
+				<h3>{{product.name}} <a href="{{url_for('admin_routes.products')}}" style="float: right; margin-top: 1rem; 
+                    color: #F0E68C; text-decoration: underline; text-transform: lowercase;">back</a></h3>
+				<div class="content-detail">
+					<div class="product-container">
+                        <div class="image-container">
+                          <img src="{{url_for('static', filename='img/products/img9.jpg')}}" alt="Product Image">
+                        </div>
+                        <div class="details-container">
+                          <h2>{{product.sku}}</h2>
+                          <p class="description">{{product.description}}</p>
+                          <p class="sku">{{product.sku}}</p>
+                          <p class="quantity">{{product.quantity}}</p>
+                          <p class="category-types"> 
+                            {% for cat_type in product.category_types %} 
+                                {{cat_type.name}}
+                            {%endfor%}</p>
+                        </div>
+                      </div>
+                      
+				</div>
+			</div>
+		</div>		
+
+	</main> <!-- Main Area -->
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "customer/layout.html" %}
+{% block script %}
+  		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  		<script>
+		    $(document).ready(function(){
+		      $('.slider').bxSlider({ 
+				  auto: true,
+				  autoControls: true,
+				  stopAutoOnClick: true,
+				  pager: true
+				});
+		    });
+		 </script>
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<main>
+			<div class="slider">
+				<div class="slide-1">
+					<img src="{{ url_for('static', filename='img/slider/slide-1.jpg')}}">
+					<div class="slider-text">
+						<h3>Sale 40% off</h3>
+						<h2>Men's Watches</h2>
+						<a href="#">Shop Now</a>
+					</div>
+				</div>
+				<div class="slide-2">
+					<img src="{{ url_for('static', filename='img/slider/slide-2.jpg')}}">
+					<div class="slider-text">
+						<h3>Sale 20% off</h3>
+						<h2>Women's Fashion</h2>
+						<a href="#">Shop Now</a>
+					</div>
+				</div>
+				<div class="slide-3">
+					<img src="{{ url_for('static', filename='img/slider/slide-3.jpg')}}">
+					<div class="slider-text">
+						<h3>Sale 50% off</h3>
+						<h2>Women's Collection</h2>
+						<a href="#">Shop Now</a>
+					</div>
+				</div>		
+			</div> <!-- slider -->
+
+			<div class="new-product-section">
+				<div class="product-section-heading">
+					<h2>Trending Products <img src="img/icons/increase.png"></h2>
+					<h3>Most selling product for the month</h3>
+				</div>
+				<div class="product-content">
+				{% for product in products %}
+					<div class="product">
+						<a href="product.html">
+							<img src="{{ url_for('static', filename='img/products/' ~ product.image)}}">
+						</a>
+						<div class="product-detail">
+							<div style="display: flex; column-gap: 5px;">
+								{% for cat_type in product.category_types %}
+                                        <h3>{{ cat_type.name }}'s</h3>
+                                {% endfor %}
+								<h3>/</h3>
+								{% for category in product.categories %}
+                                        <h3>{{ category.name }}</h3>
+                                    {% endfor %}
+							</div>
+							<h2>{{product.name}}</h2>
+							<a href="#">Add to Cart</a>
+							<p>$ {{product.price}}</p>
+						</div>						
+					</div>
+				{% endfor %}	
+				</div>
+			</div> <!-- New Product Section -->
+
+			<div class="collection">
+				<div class="men-collection">
+					<h2>Men's Collection</h2>
+				</div>
+				<div class="women-collection">
+					<h2>Women's Collection</h2>
+				</div>
+			</div> <!-- Collection Section -->
+
+			<div class="new-product-section">
+				<div class="product-section-heading">
+					<h2>Recommend Products <img src="img/icons/good_quality.png"></h2>
+					<h3>OUR BEST PRODUCTS RECOMMENDED FOR YOU</h3>
+				</div>
+				<div class="product-content">
+					{% for product in products %}
+					<div class="product">
+						<a href="product.html">
+							<img src="{{ url_for('static', filename='img/products/' ~ product.image)}}">
+						</a>
+						<div class="product-detail">
+							<div style="display: flex; column-gap: 5px;">
+								{% for cat_type in product.category_types %}
+                                        <h3>{{ cat_type.name }}'s</h3>
+                                {% endfor %}
+								<h3>/</h3>
+								{% for category in product.categories %}
+                                        <h3>{{ category.name }}</h3>
+                                    {% endfor %}
+							</div>
+							<h2>{{product.name}}</h2>
+							<a href="#">Add to Cart</a>
+							<p>$ {{product.price}}</p>
+						</div>						
+					</div>
+					{% endfor %}
+					
+				</div>
+			</div> <!-- Recommend Product Section -->
+		</main> <!-- Main Area -->
+	</div>
+{% endblock %}

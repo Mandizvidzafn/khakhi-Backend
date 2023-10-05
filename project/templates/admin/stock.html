@@ -1,13 +1,12 @@
-{% extends 'admin/base.html' %}
-
+{% extends "admin/layout.html" %}
 {% block body %}
 
 	<header>
 		<div class="container">
 			<div class="brand">
 				<div class="logo">
-					<a href="/admin">
-						<img src="{{ url_for('static', filename='img/icons/online_shopping.png') }}">
+					<a href="index.html">
+						<img src="{{url_for('static', filename='img/icons/online_shopping.png')}}">
 						<div class="logo-text">
 							<p class="big-logo">Ecommerce</p>
 							<p class="small-logo">online shop</p>
@@ -37,9 +36,10 @@
 				<h3>Menu</h3>
 				<ul>
 					<li><a href="/admin">Home</a></li>
-					<li><a href="/product">Product</a></li>
-					<li><a href="/category">Category</a></li>
-					<li><a class="active" href="/stock">Stock</a></li>
+					<li><a href="/admin/order">Order</a></li>
+					<li><a href="{{url_for('admin_routes.products')}}">Product</a></li>
+					<li><a href="/admin/category">Category</a></li>
+					<li><a class="active" href="/admin/stock">Stock</a></li>
 					<li><a href="">Users</a></li>
 				</ul>				
 			</div>
@@ -47,15 +47,15 @@
 				<h3>Stock</h3>
 				<div class="content-data">
 					<div class="content-form">
-						<form>
+						<form method="post">
 							<h4>Add Stock</h4>
 							<div class="form-inline">
 								<div class="form-group">
 									<label>Product Name</label>
-									<select name="pname">
-										<option>---Select a Product---</option>
-										<option value="men">Men</option>
-										<option value="women">Women</option>
+									<select name="pname" required>
+										{% for product in products %}
+										<option value="{{product.name}}">{{product.name}}</option>
+										{% endfor %}
 									</select>
 								</div>
 								<div class="form-group">
@@ -75,37 +75,33 @@
 							<thead>
 								<tr>
 									<th>Product</th>
-									<th>Category</th>
+									<th>Type</th>
 									<th>Stock in</th>
 									<th>Stock Out</th>
 									<th>Available</th>
 								</tr>
 							</thead>
 							<tbody>
+								{% for product in products %}
 								<tr>
-									<td>Blue Jeans</td>
-									<td>Jeans</td>
-									<td>10</td>
-									<td>3</td>
-									<td>7</td>
+									<td>{{product.name}}</td>
+									<td>
+										{%for cat_type in product.category_types %}
+											{{cat_type.name}}
+										{% endfor %}
+									</td>
+									<td>{{product.quantity}}</td>
+									<td>0</td>
+									<td>{{product.quantity}}</td>
 								</tr>
+								{% endfor %}
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-		</div>		
-
 	</main> <!-- Main Area -->
 
-	<footer>
-		<div class="container">
-			<div class="footer-bar">
-				<div class="copyright-text">
-					<p>Copryright 2020 - All Rights Reserved</p>
-				</div>
-			</div> <!-- Footer Bar -->
-		</div>
-	</footer> <!-- Footer Area -->
+{% endblock body%}		
+	
 
-{% endblock %}
