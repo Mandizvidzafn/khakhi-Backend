@@ -52,7 +52,7 @@
 				<div class="content-detail">
 					<div class="product-container">
                         <div class="image-container">
-                          <img src="{{url_for('static', filename='img/products/img9.jpg')}}" alt="Product Image">
+                          <img src="{{url_for('static', filename='img/products/' ~ product.image)}}" alt="Product Image">
                         </div>
                         <div class="details-container">
                           <h2>{{product.sku}}</h2>
